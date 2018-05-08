@@ -13,12 +13,18 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.example.jason.examination.R;
 import com.example.jason.examination.adapter.BookListAdapter;
 import com.example.jason.examination.base.BaseActivity;
 import com.example.jason.examination.data.BookList;
+import com.example.jason.examination.event.DeleteBookEvent;
 import com.example.jason.examination.utils.ToastHelper;
 import com.example.jason.examination.utils.db.DBBookListUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +56,9 @@ public class BookListActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_list);
         ButterKnife.bind(this);
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
         title = getIntent().getStringExtra("intentToBookListActivity");
         tvTitleBookListActivity.setText(title);
         if ("已阅读的书籍".equals(title)) {
@@ -57,14 +66,46 @@ public class BookListActivity extends BaseActivity {
         } else {
             bookLists = DBBookListUtils.getInstance().queryUserDependlassification(title);
         }
-        if (bookLists.size()==0){
+        if (bookLists.size() == 0) {
             ToastHelper.showShortMessage("此分类未有任何书籍");
-        }else {
+        } else {
             initRecyclerView();
         }
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void receiveDeleteFriendEvent(DeleteBookEvent event) {
+        LogUtils.d("InstagramDialog receiveDeleteFriendEvent send Event = ");
+        if ("已阅读的书籍".equals(title)) {
+            bookLists = DBBookListUtils.getInstance().queryUserDependIsRead(true);
+        }
+        if (bookLists.size() == 0) {
+            ToastHelper.showShortMessage("此分类未有任何书籍");
+            initRecyclerView();
+        } else {
+            initRecyclerView();
+        }
+
+    }
 
     @OnClick(R.id.iv_search_book_list_activity)
     public void imageSearchClicked() {
@@ -104,19 +145,10 @@ public class BookListActivity extends BaseActivity {
     }
 
     public void initRecyclerView() {
-        if (bookListAdapter == null) {
-            final GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
-            mRecyclerView.setLayoutManager(gridLayoutManager);
-            bookListAdapter = new BookListAdapter(bookLists, this);
-            mRecyclerView.setAdapter(bookListAdapter);
-        } else {
-            mRecyclerView.post(new Runnable() {
-                @Override
-                public void run() {
-                    bookListAdapter.notifyDataSetChanged();
-                }
-            });
-        }
+        final GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        mRecyclerView.setLayoutManager(gridLayoutManager);
+        bookListAdapter = new BookListAdapter(bookLists, this);
+        bookListAdapter.setTitle(title);
+        mRecyclerView.setAdapter(bookListAdapter);
     }
-
 }

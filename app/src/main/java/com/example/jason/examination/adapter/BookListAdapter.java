@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,8 +15,11 @@ import com.bumptech.glide.Glide;
 import com.example.jason.examination.R;
 import com.example.jason.examination.activity.ReadBookActivity;
 import com.example.jason.examination.data.BookList;
+import com.example.jason.examination.event.DeleteBookEvent;
 import com.example.jason.examination.utils.GsonUtil;
 import com.example.jason.examination.utils.db.DBBookListUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +36,15 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookLi
     private List<BookList> bookLists;
     private Activity mActivity;
     private List<BookList> isReadList = new ArrayList<>();
+    private String title;
 
     public BookListAdapter(List<BookList> mData, Activity mActivity) {
         this.bookLists = mData;
         this.mActivity = mActivity;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override
@@ -46,6 +55,11 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookLi
 
     @Override
     public void onBindViewHolder(BookListAdapterViewHolder holder, final int position) {
+        if ("已阅读的书籍".equals(title)) {
+            holder.mDelete.setVisibility(View.VISIBLE);
+        } else {
+            holder.mDelete.setVisibility(View.GONE);
+        }
         Glide.with(mActivity).load(bookLists.get(position).getBookCover()).placeholder(R.drawable.first_book_cover).centerCrop().into(holder.mBookCovertImage);
         holder.mTitle.setText(bookLists.get(position).getBookName());
         holder.mWriter.setText(bookLists.get(position).getBookWriter());
@@ -59,6 +73,18 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookLi
                 if (!(bookLists.get(position).getIsReadBefore())) {
                     bookLists.get(position).setIsReadBefore(true);
                     DBBookListUtils.getInstance().updateData(bookLists.get(position));
+                }
+            }
+        });
+
+        holder.mDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ((bookLists.get(position).getIsReadBefore())) {
+                    bookLists.get(position).setIsReadBefore(false);
+                    DBBookListUtils.getInstance().updateData(bookLists.get(position));
+                    EventBus.getDefault().post(new DeleteBookEvent());
+                    LogUtils.d("InstagramDialog getDate send Event = ");
                 }
             }
         });
@@ -84,6 +110,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookLi
         @BindView(R.id.iv_item_book_list_adapter) ImageView mBookCovertImage;
         @BindView(R.id.tv_title_book_list_adapter) TextView mTitle;
         @BindView(R.id.tv_writer_book_list_adapter) TextView mWriter;
+        @BindView(R.id.btn_delete_book_list_adapter) Button mDelete;
 
         public BookListAdapterViewHolder(View itemView) {
             super(itemView);

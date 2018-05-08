@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
-              android:layout_height="298dp"
+              android:layout_height="330dp"
               android:orientation="vertical"
               tools:ignore="MissingPrefix">
 
@@ -35,5 +35,15 @@
         android:singleLine="true"
         android:textSize="16sp"
         android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btn_delete_book_list_adapter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:text="删除此书"
+        android:visibility="visible"/>
 
 </LinearLayout>
