@@ -55,7 +55,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookLi
 
     @Override
     public void onBindViewHolder(BookListAdapterViewHolder holder, final int position) {
-        if ("已阅读的书籍".equals(title)) {
+        if ("MyBooks".equals(title)) {
             holder.mDelete.setVisibility(View.VISIBLE);
         } else {
             holder.mDelete.setVisibility(View.GONE);

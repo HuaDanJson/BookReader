@@ -192,45 +192,45 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             case R.id.btn_story_main_activity:
                 //小说
-                intentToBookList("小说");
+                intentToBookList("Biography");
                 break;
             case R.id.btn_history_main_activity:
                 //历史
-                intentToBookList("历史");
+                intentToBookList("ShortStory");
                 break;
             case R.id.btn_philosophy_main_activity:
                 //哲学
-                intentToBookList("哲学");
+                intentToBookList("Novel");
                 break;
             case R.id.btn_politics_main_activity:
                 //政治
-                intentToBookList("政治");
+                intentToBookList("Inspirational");
                 break;
             case R.id.btn_finance_main_activity:
                 //财经
-                intentToBookList("财经");
+                intentToBookList("Science");
                 break;
             case R.id.btn_art_main_activity:
                 //美术
-                intentToBookList("美术");
+                intentToBookList("Children");
                 break;
             case R.id.btn_technology_main_activity:
                 //技术
-                intentToBookList("技术");
+                intentToBookList("Religious");
                 break;
             case R.id.btn_building_main_activity:
                 //建筑
-                intentToBookList("建筑");
+                intentToBookList("CET4");
                 break;
 
             case R.id.btn_english_cet_main_activity:
                 //英语四六级
-                intentToBookList("英语四六级");
+                intentToBookList("CET6");
                 break;
 
             case R.id.btn_collection_main_activity:
                 //已阅读的书籍
-                intentToBookList("已阅读的书籍");
+                intentToBookList("MyBooks");
                 break;
             default:
                 break;
