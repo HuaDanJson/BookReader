@@ -60,8 +60,10 @@ public class BookListActivity extends BaseActivity {
             EventBus.getDefault().register(this);
         }
         title = getIntent().getStringExtra("intentToBookListActivity");
+
+        LogUtils.d("BookListActivity title = "+title);
         tvTitleBookListActivity.setText(title);
-        if ("MyBooks".equals(title)) {
+        if ("已阅读".equals(title)) {
             bookLists = DBBookListUtils.getInstance().queryUserDependIsRead(true);
         } else {
             bookLists = DBBookListUtils.getInstance().queryUserDependlassification(title);
@@ -95,7 +97,7 @@ public class BookListActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void receiveDeleteFriendEvent(DeleteBookEvent event) {
         LogUtils.d("InstagramDialog receiveDeleteFriendEvent send Event = ");
-        if ("MyBooks".equals(title)) {
+        if ("已阅读".equals(title)) {
             bookLists = DBBookListUtils.getInstance().queryUserDependIsRead(true);
         }
         if (bookLists.size() == 0) {

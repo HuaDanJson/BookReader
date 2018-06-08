@@ -192,45 +192,45 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             case R.id.btn_story_main_activity:
                 //小说
-                intentToBookList("Biography");
+                intentToBookList("语文");
                 break;
             case R.id.btn_history_main_activity:
                 //历史
-                intentToBookList("ShortStory");
+                intentToBookList("数学");
                 break;
             case R.id.btn_philosophy_main_activity:
                 //哲学
-                intentToBookList("Novel");
+                intentToBookList("英语");
                 break;
             case R.id.btn_politics_main_activity:
                 //政治
-                intentToBookList("Inspirational");
+                intentToBookList("物理");
                 break;
             case R.id.btn_finance_main_activity:
                 //财经
-                intentToBookList("Science");
+                intentToBookList("化学");
                 break;
             case R.id.btn_art_main_activity:
                 //美术
-                intentToBookList("Children");
+                intentToBookList("生物");
                 break;
             case R.id.btn_technology_main_activity:
                 //技术
-                intentToBookList("Religious");
+                intentToBookList("历史");
                 break;
             case R.id.btn_building_main_activity:
                 //建筑
-                intentToBookList("CET4");
+                intentToBookList("地理");
                 break;
 
             case R.id.btn_english_cet_main_activity:
                 //英语四六级
-                intentToBookList("CET6");
+                intentToBookList("政治");
                 break;
 
             case R.id.btn_collection_main_activity:
                 //已阅读的书籍
-                intentToBookList("MyBooks");
+                intentToBookList("已阅读");
                 break;
             default:
                 break;
@@ -306,6 +306,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         }
                     }
                     LogUtils.d("getBookData  DB =  " + DBBookListUtils.getInstance().queryAllData().size());
+                } else {
+                    LogUtils.d("getMediaData Failed  e = " + e);
                 }
             }
         });

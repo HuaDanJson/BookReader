@@ -28,7 +28,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bmob.initialize(this, "d147eab67be5092ca6741ad7b27dbdda");
+        Bmob.initialize(this, "f57b092ef5fa0c28152abc0ca9106341");
         setContentView(R.layout.activity_login);
         //缓存用户对象为空时， 可打开用户注册界面…
         initialize();

@@ -103,7 +103,7 @@
             android:background="@drawable/login_btn_register_false"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Biography"
+            android:text="语文"
             android:textAllCaps="false"
             android:textColor="#ffff00"
             android:textSize="19sp"/>
@@ -118,7 +118,7 @@
             android:background="@drawable/login_btn_register_false"
             android:gravity="center"
             android:padding="5dp"
-            android:text="ShortStory"
+            android:text="数学"
             android:textAllCaps="false"
             android:textColor="#ffff00"
             android:textSize="19sp"/>
@@ -140,7 +140,7 @@
             android:background="@drawable/login_btn_register_false"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Novel"
+            android:text="英语"
             android:textAllCaps="false"
             android:textColor="#ffff00"
             android:textSize="19sp"/>
@@ -155,7 +155,7 @@
             android:background="@drawable/login_btn_register_false"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Inspirational"
+            android:text="物理"
             android:textAllCaps="false"
             android:textColor="#ffff00"
             android:textSize="19sp"/>
@@ -177,7 +177,7 @@
             android:background="@drawable/login_btn_register_false"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Science"
+            android:text="化学"
             android:textAllCaps="false"
             android:textColor="#ffff00"
             android:textSize="19sp"/>
@@ -192,7 +192,7 @@
             android:background="@drawable/login_btn_register_false"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Children"
+            android:text="生物"
             android:textAllCaps="false"
             android:textColor="#ffff00"
             android:textSize="19sp"/>
@@ -214,7 +214,7 @@
             android:background="@drawable/login_btn_register_false"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Religious"
+            android:text="历史"
             android:textAllCaps="false"
             android:textColor="#ffff00"
             android:textSize="19sp"/>
@@ -229,7 +229,7 @@
             android:background="@drawable/login_btn_register_false"
             android:gravity="center"
             android:padding="5dp"
-            android:text="CET4"
+            android:text="地理"
             android:textColor="#ffff00"
             android:textSize="19sp"/>
 
@@ -250,7 +250,7 @@
             android:background="@drawable/login_btn_register_false"
             android:gravity="center"
             android:padding="5dp"
-            android:text="CET6"
+            android:text="政治"
             android:textAllCaps="false"
             android:textColor="#ffff00"
             android:textSize="19sp"/>
@@ -265,7 +265,7 @@
             android:background="@drawable/login_btn_register_false"
             android:gravity="center"
             android:padding="5dp"
-            android:text="MyBooks"
+            android:text="已阅读"
             android:textAllCaps="false"
             android:textColor="#ffff00"
             android:textSize="19sp"/>
